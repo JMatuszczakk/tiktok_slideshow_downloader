@@ -27,7 +27,7 @@ time.sleep(3)
 # ile_zdjec = int(input("Enter the number of images:"))
 urls = []
 for i in range(2, 20, 2):
-    try: 
+    try:
         if "SLIDE" in page.locator(f"#button-download-ready > a:nth-child({i})").text_content():
             url = page.locator(f"#button-download-ready > a:nth-child({i})").get_attribute("href")
             if url not in urls:
@@ -45,7 +45,7 @@ print("Pobieranie zdjęć...")
 random_int = random.randint(0, 1000)
 
 if sys.platform == 'darwin':
-    print("KORZYSTASZ Z MACA")
+    print("KORZYSTASZ Z MACOS")
     os.mkdir(str(random_int))
     for i in range(len(urls)):
         urlretrieve(urls[i], f"{random_int}/{i}.jpg")
@@ -59,4 +59,9 @@ else:
         urlretrieve(urls[i], f"{base_filepath}\\{random_int}\\{i}.jpg")
 print("Pobieranie zakończone")
 print("Zdjęcia znajdziesz w folderze "+str(random_int))
+
+os.system(f"zip -r {random_int}.zip {random_int}")
+print("Zapakowano")
+#delete folder
+os.system(f"rm -r {random_int}")
 print("Pozdrawiam serdecznie")
