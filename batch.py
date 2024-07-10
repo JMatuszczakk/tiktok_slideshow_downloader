@@ -70,10 +70,13 @@ def download_and_zip(url):
     print("Pobieranie zakończone")
     print("Zdjęcia znajdziesz w folderze "+str(random_int))
 
-    os.system(f"zip -r {random_int}.zip {random_int}")
-    print("Zapakowano")
-    #delete folder
-    os.system(f"rm -r {random_int}")
+    try: 
+        os.system(f"zip -r {random_int}.zip {random_int}")
+        print("Zapakowano")
+         #delete folder
+        os.system(f"rm -r {random_int}")
+    except:
+        print("Nie udało się zapakować")
     print("Pozdrawiam serdecznie")
 
 
